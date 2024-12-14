@@ -1,3 +1,4 @@
 # packages.txt
 # pip install --no-cache-dir -r packages.txt
+-e ./modules/watsxn-db
 -e ./modules/watsxn-trainup
