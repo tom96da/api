@@ -10,15 +10,21 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y libpq-dev gcc && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-FROM base AS development
+FROM base AS build
 
 RUN pip install --upgrade pip
 
 COPY requirements.txt packages.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install gunicorn
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 COPY . .
 RUN pip install --no-cache-dir -r packages.txt
 
 EXPOSE 5000
-CMD ["flask", "run", "--host=0.0.0.0"]
+
+ENTRYPOINT ["/entrypoint.sh"]
