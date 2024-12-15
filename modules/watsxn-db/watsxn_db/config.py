@@ -5,7 +5,7 @@
 
 """ watsxn_db.config module """
 
-SQLALCHEMY_DATABASE_URI="postgresql://tom96da:dbpass@localhost:5432/tom96da"
+SQLALCHEMY_DATABASE_URI="postgresql://tom96da:dbpass@postgres:5432/tom96da_dev"
 
 SQLALCHEMY_TRACK_MODIFICATIONS=False
 

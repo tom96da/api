@@ -10,7 +10,7 @@ This module contains the views for the Watsxn TrainUp extension.
 
 from flask import Blueprint, request, current_app
 
-blueprint = Blueprint("trainup", __name__, url_prefix="/trainup")
+blueprint = Blueprint("watsxn_trainup", __name__, url_prefix="/trainup")
 
 @blueprint.route("/")
 def index():

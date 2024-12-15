@@ -6,22 +6,23 @@
 """ watsxn_db.mixins module """
 
 from datetime import datetime
-from zoneinfo import ZoneInfo
-from sqlalchemy import Column, DateTime
-from sqlalchemy.ext.declarative import declared_attr
+from watsxn_db import db
 
 class Timestamp:
     """
-    A mixin class that provides timestamp columns for creation and update times in JST (Japan Standard Time).
+    A mixin class that provides timestamp columns for creation and update times.
     """
-    @staticmethod
-    def current_time_jst():
-        return datetime.now(ZoneInfo('Asia/Tokyo'))
+    created = db.Column(
+        db.DateTime(timezone=False),
+        default=datetime.now,
+        nullable=False
+    )
+    """The timestamp for when the record was created."""
 
-    @declared_attr
-    def created(cls):
-        return Column(DateTime(timezone=True), default=cls.current_time_jst)
-
-    @declared_attr
-    def updated(cls):
-        return Column(DateTime(timezone=True), default=cls.current_time_jst, onupdate=cls.current_time_jst)
+    updated = db.Column(
+        db.DateTime(timezone=False),
+        default=datetime.now,
+        onupdate=datetime.now,
+        nullable=False
+    )
+    """The timestamp for when the record was last updated."""
