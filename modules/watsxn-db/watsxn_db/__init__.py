@@ -6,4 +6,5 @@
 """ watsxn_db module """
 
 from .ext import WatsxnDB
+from .mixins import Timestamp
 from .shared import db

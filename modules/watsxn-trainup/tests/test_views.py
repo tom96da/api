@@ -1,5 +1,5 @@
 import pytest
-from flask import Flask
+
 from watsxn_trainup.views import blueprint
 
 
